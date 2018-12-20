@@ -213,6 +213,7 @@ export default {
         })
       }
 
+      this.$emit('init-capture')
       html2canvas(this.rangeDOM, { useCORS: true }).then((canvas) => {
         $bgCanvas = canvas;
         this.decorateBgCanvas($bgCanvas);
@@ -220,7 +221,8 @@ export default {
 
         initBoxRelHandlers();
       }).catch((err) => {
-        this.$emit('captured', { error: err })
+        this.$emit('captured', { error: err });
+        dispose();
       });
     }
   }
