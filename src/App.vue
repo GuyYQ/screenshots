@@ -1,81 +1,82 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-    </div>
-    <router-view/>
+    <ScreenCapture class="capture" @captured="present"></ScreenCapture>
+    <figure v-if="src" class="presentation">
+      <div>截图结果</div>
+      <img :src="src">
+    </figure>
   </div>
 </template>
 
+<script>
+import ScreenCapture from "@/components/screen-capture.vue";
+
+export default {
+  name: "App",
+  components: {
+    ScreenCapture
+  },
+  data() {
+    return {
+      src: undefined
+    };
+  },
+  methods: {
+    present ({ error, imageData }) {
+      if (error) {
+        console.error('Capture error', error);
+        return;
+      }
+      this.src = imageData;
+    }
+  }
+};
+</script>
+
 <style>
+* {
+  box-sizing: border-box;
+}
+
+html, body, #app {
+  height: 100%;
+  margin: 0;
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 2em;
+}
+
+.capture {
+  height: 40px;
+  margin: 0;
+}
+
+.presentation {
+  flex: 1;
+  width: 100%;
   text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  overflow: auto;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-
-#myCanvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 9998;
-    overflow: hidden;
-}
-
-.retc {
-    position: absolute;
-    border: 1px solid #CCCCCC;
-    background-color: rgba(49, 108, 236, 0.1);
-    overflow: hidden;
-    z-index: 99999;
+.presentation img {
+  margin-top: 20px;
+  border: 1px solid green;
 }
 
 .div {
-    position: absolute;
-    border: 1px dashed red;
-    width: 0px;
-    height: 0px;
-    left: 0px;
-    top: 0px;
-    overflow: hidden;
-    z-index: 99999;
-}
-
-.dialog-retc {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 0px;
-    height: 0px;
-    left: 0px;
-    top: 0px;
-    overflow: hidden;
-    z-index: 9999;
-}
-
-#myCanvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 9998;
-    overflow: hidden;
-}
-
-.retc-done {
-    width: 100px;
-    height: 100px;
+  position: absolute;
+  border: 1px dashed red;
+  width: 0px;
+  height: 0px;
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+  z-index: 99999;
 }
 </style>

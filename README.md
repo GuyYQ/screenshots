@@ -1,38 +1,22 @@
 # screen-capture
-##  工具：html2canvas、canvas2image、vue
-思路：用html2canvas将整个页面的dom转换为canvas，再用canvas2image将canvas转成图片，鼠标点击截图将取到截图区域的坐标，利用canvas的drawImage方法，截取图片生成新的canvas，再用canvas2image将新生成的canvas转成图片
-### 1.安装html2canvas
-npm install html2canvas  --save
-### 2.引用html2canvas、canvas2image
-### 3.点击截图按钮时，用html2canvas将整个页面的dom转换为canvas
-### 4.按住鼠标左键选区截图区域，获取截图区域坐标，利用canvas的drawImage方法，截取图片生成新的canvas，再用canvas2image将新生成的canvas转成图片
 
-## Project setup
-```
-npm install
-```
+一个简单的基于 `html2canvas` 的截屏组件。
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+## How
+
+使用 `html2canvas` 将页面 `DOM` 转换为 `canvas`，再使用 `canvas.toDataURL` 将 canvas 转成 `base64串`，鼠标点击截图将取到截图区域的坐标，利用 `canvas.drawImage` 截取图片生成新的 `canvas`，最后使用 `canvas.toDataURL` 得到最终的截图 `base64串`。
+
+### Usage
+
+TODO，待 publish。
+
+```vue
+<ScreenCapture @captured="onCaptured({ error, imageData })" :z-index="10000"><WhatEverYouWantToReplaceDefaultPlaceholder /></ScreenCapture>
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Preview
 
-### Run your tests
+```sh
+$ npm install
+$ npm run serve
 ```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-
