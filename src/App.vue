@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import ScreenCapture from "@/components/screen-capture.vue";
+import ScreenCapture from "@/components/ScreenCapture.vue";
 
 export default {
   name: "App",
@@ -67,16 +67,5 @@ html, body, #app {
 .presentation img {
   margin-top: 20px;
   border: 1px solid green;
-}
-
-.div {
-  position: absolute;
-  border: 1px dashed red;
-  width: 0px;
-  height: 0px;
-  left: 0px;
-  top: 0px;
-  overflow: hidden;
-  z-index: 99999;
 }
 </style>
