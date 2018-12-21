@@ -20,7 +20,8 @@ const BgCanvasStyleMap = {
 }
 
 const RangeBoxStyleMap = {
-  position: "absolute",
+  // use absolute rather than fixed
+  position: 'fixed',
   border: "1px dashed red",
   width: "0",
   height: "0",
@@ -156,7 +157,7 @@ export default {
         const selected = boxWidth !== 0 || boxHeight !== 0
         if (selected) {
           this.capturing = false;
-          const $canvas = document.createElement("canvas");
+          let $canvas = document.createElement("canvas");
           const canvasCtx = $canvas.getContext("2d");
           $canvas.width = parseInt(boxRange.width, 10);
           $canvas.height = parseInt(boxRange.height, 10);
@@ -215,6 +216,7 @@ export default {
 
       this.$emit('init-capture')
       html2canvas(this.rangeDOM, { useCORS: true }).then((canvas) => {
+        this.$emit('can-capture')
         $bgCanvas = canvas;
         this.decorateBgCanvas($bgCanvas);
         this.rangeDOM.appendChild($bgCanvas);
