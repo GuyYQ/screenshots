@@ -173,7 +173,7 @@ export default {
             );
             this.$emit('captured', { error: null, imageData: $canvas.toDataURL() });
             $canvas.width = $canvas.height = 0;
-            $canvas.remove();
+            $canvas = null;
           };
           dispose();
           return;
