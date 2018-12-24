@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <p v-for="i in 50" :key="i">{{i}}</p>
     <ScreenCapture class="capture" @captured="present"></ScreenCapture>
     <figure v-if="src" class="presentation">
       <div>截图结果</div>
@@ -43,6 +44,14 @@ html, body, #app {
   margin: 0;
 }
 
+html {
+  overflow: hidden;
+}
+
+body {
+  overflow: auto;
+}
+
 #app {
   display: flex;
   flex-direction: column;
@@ -59,6 +68,7 @@ html, body, #app {
 .presentation {
   flex: 1;
   width: 100%;
+  min-height: 500px;
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   overflow: auto;
